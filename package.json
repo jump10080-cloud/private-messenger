@@ -1,0 +1,10 @@
+{
+  "name": "private-messenger",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Production-oriented two-user private messenger with PostgreSQL, HTTPS, WebSocket, persistent accounts and client-side encryption.",
+  "main": "server.js",
+  "scripts": {"start": "node server.js", "dev": "node server.js"},
+  "engines": {"node": ">=20"},
+  "dependencies": {"pg": "^8.16.3", "qrcode": "^1.5.4", "ws": "^8.18.3"}
+}
