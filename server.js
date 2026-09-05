@@ -14,12 +14,14 @@ const SESSION_TTL_MS = 1000 * 60 * 60 * 24 * 30;
 const MAX_BODY = 256 * 1024;
 const DATABASE_URL = process.env.DATABASE_URL;
 if (!DATABASE_URL) throw new Error('DATABASE_URL is required');
-try {
-  const dbUrl = new URL(DATABASE_URL);
-  console.log('DATABASE HOST:', dbUrl.hostname);
-} catch (e) {
-  console.log('DATABASE URL is invalid');
-}
+console.log('DATABASE_URL exists:', !!DATABASE_URL);
+console.log('DATABASE_URL length:', DATABASE_URL.length);
+console.log('DATABASE_URL starts with postgres:', DATABASE_URL.startsWith('postgres'));
+console.log('DATABASE_URL starts with postgresql:', DATABASE_URL.startsWith('postgresql'));
+console.log(
+  'DATABASE_URL preview:',
+  DATABASE_URL.substring(0, 20).replace(/:[^:@]+@/, ':***@')
+);
 const pool = new Pool({ connectionString: DATABASE_URL, max: Number(process.env.DB_POOL_MAX || 10), ssl: process.env.DATABASE_SSL === 'true' ? { rejectUnauthorized: false } : undefined });
 const sockets = new Map();
 const rate = new Map();
